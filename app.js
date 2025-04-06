@@ -40,6 +40,25 @@ setInterval(getRealTime, 1000);
 
 getRealTime();
 
+/// weather widget
+
+const weatherIcon = document.getElementById('weatherIcon');
+const temperature = document.getElementById('temperature');
+const windSpeed = document.getElementById('windSpeed');
+const humidity = document.getElementById('humidity');
+
+async function getWeather() {
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA&lang=ru&appid=8f8888b555d073695608699843286db8&units=metric';
+    const res = await fetch(url);
+    const data = await res.json();
+
+    // weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${data.main.temp | 0}°C`
+    console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+}
+
+getWeather();
+
 /// Input Values
 
 const greetingsInput = document.getElementById('greetingsInput');
