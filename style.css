@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Arial-MT';
+    src: url(/Momentum/assets/fonts/Arial-MT.woff);
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -6,23 +11,159 @@ body {
 .root {
     width: 100vw;
     height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(""), rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease-in-out; 
+    opacity: 1;
+}
 
-    background-color: black;
+.root.hidden {
+    opacity: 0.1;
 }
 
 .header { 
     width: 100%;
     height: 33.33%;
+    box-sizing: border-box;
     
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding: 20px;
+}
+
+.inputValueLineAndPlayerButtons {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonsContainer {
+    width: 120px;
+    height: 40px;
+
+    color: #fff;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playButton {
+    width: 32px;
+    height: 32px;
+
+    background-color: inherit;
+    background-size: cover;
+    border: none;
+
+    opacity: 0.7;
+
+    transition: 0.3s ease;
+}
+
+.playButton:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.play-prev {
+    background-image: url(./assets/svg/play-prev.svg);
+}
+
+.play {
+    width: 40px;
+    height: 40px;
+
+    background-image: url(./assets/svg/play.svg);
+}
+
+.play.active {
+    background-image: url(./assets/svg/pause.svg);
+}
+
+
+.play-next {
+    background-image: url(./assets/svg/play-next.svg);
+}
+
+.song {
+    color: #fff;
+    opacity: 0.7;
+
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+
+    transition: 0.3s;
+}
+
+.active-song {
+    opacity: 1;
+}
+
+.inputVolume {
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px;
+    border-radius: 20px;
+
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.volume {
+    opacity: 0.7;
+}
+
+.volume:hover {
+    cursor: pointer;
+}
+
+.cityName {
+    width: 170px;
+    height: 34px;
+    box-sizing: border-box;
+
+    padding: 15px;
+
+    color: #fff;
+
+    background-color: inherit;
+
+    border: none;
+    border-bottom: 1px solid #fff;
+
+    outline: none;
+
+    font-size: 20px;
 }
 
 .weatherWidget {
     color: #fff;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
+
+    gap: 15px;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.weatherDiscription {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
 }
 
 .main {
@@ -35,32 +176,168 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    gap: 20px;
+
+    position: relative;
+}
+
+.leftSliderButton,
+.rightSliderButton {
+    width: 32px;
+    height: 32px;
+
+    opacity: 0.7;
+
+    position: absolute;
+
+    background-color: inherit;
+    border: none;
+
+    background-size: cover;
+}
+
+.leftSliderButton:hover,
+.rightSliderButton:hover {
+    opacity: 1;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.leftSliderButton {
+    left: 30px;
+
+    background-image: url(./assets/svg/slider-prev.svg);
+}
+
+.rightSliderButton {
+    right: 30px;
+
+    background-image: url(./assets/svg/slider-next.svg);
 }
 
 .watch {
-    font-size: 50px;
+    font-size: 100px;
+    font-family: 'Arial-MT';
 }
 
 .dayAndDate {
-    font-size: 35px;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
 }
 
 .inputAndText {
+    width: 100%;
+
     font-size: 40px;
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.greetings {
+    width: 50%;
+
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.greetingsInput {
+    width: 50%;
+}
+
+.greetingsText {
+    width: 50%;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.greetingsImputContainer {
+    width: 50%;
 }
 
 #greetingsInput {
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: #fff;
-    font-size: 35px;
+    font-family: Arial, sans-serif;
+    font-size: 40px;
     padding: 0;
     margin: 0;
 
     width: 200px;
+
+    outline: none;
 }
 
 .footer {
     width: 100%;
     height: 33.33%;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 20px;
+    gap: 20px;
+}
+
+.changeQuote {
+    width: 32px;
+    height: 32px;
+
+    background-image: url('./assets/svg/reload.svg');
+    opacity: 0.7;
+
+    background-size: cover;
+    background-color: inherit;
+    border: none;
+
+    transition: 0.3s ease;
+
+    color: #fff;
+}
+
+.changeQuote:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.qoute {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.qouteText {
+    width: 72%;
+
+    font-size: 25px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.quoteAuthor {
+    width: 72%;
+
+    font-size: 25px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: flex-end;
 }
