@@ -187,72 +187,113 @@ changeQuoteButton.addEventListener('click', getQuote);
 
 /// Player
 
+const walkmanJZButton = document.getElementById('walkmanJZ');
+const walkmanJZ = '/Momentum/songs/walkmanJZ.json';
+const walkmanNGHTButton = document.getElementById('walkmanNGHT');
+const walkmanNGHT = '/Momentum/songs/walkmanNGHT.json'
+
+let nameSong = [];
+let songs = [];
+let songCounter = 0;
+
+const songList = document.getElementById('songs');
+
+
+function readPlayList(playlist) {
+    fetch(playlist)
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(item => {
+            songs.push(item.song);
+            nameSong.push(item.name);
+        });
+
+        for (let i = 0; i < songs.length; i++) {
+            const song = document.createElement('li');
+            songList.appendChild(song);
+            song.classList.add('song');
+        
+            song.innerText = nameSong[i];
+        }
+    })
+}
+
 const volume = document.getElementById('volume');
 
 const playButton = document.getElementById('playButton');
 const playNextButton = document.getElementById('play-next');
 const prevButton = document.getElementById('play-prev');
 
-const firstSong = document.getElementById('first-song');
-const secondSong = document.getElementById('second-song');
+const audioPlayer = document.getElementById('audioPlayer');
 
-const songs = [firstSong, secondSong];
+function createSongsList() {
+
+}
 
 let isPlaying = false;
-let counter = 0;
 
-function playSongs() {
-
+function playSong() {
     document.querySelectorAll('.song').forEach(song => {
         song.classList.remove('active-song');
     });
 
     if (isPlaying) {
-        songs[counter].pause();
+        audioPlayer.pause();
         playButton.classList.remove('active');
     } else {
-        songs[counter].play();
-        playButton.classList.add('active');
+        if (audioPlayer.currentTime > 0) {
+            audioPlayer.play();
+            playButton.classList.add('active');
+            document.querySelectorAll('.song')[songCounter].classList.add('active-song');
+            isPlaying = !isPlaying;
+            return;
+        }
 
-        document.querySelectorAll('.song')[counter].classList.add('active-song');
+        audioPlayer.src = songs[songCounter];
+        audioPlayer.play();
+
+        playButton.classList.add('active');
+        document.querySelectorAll('.song')[songCounter].classList.add('active-song');
     }
 
     isPlaying = !isPlaying;
 }
 
 prevButton.addEventListener('click', () => {
-    if (counter === 0) {
+    if (songCounter === 0) {
         return;
     }
 
-    songs[counter].pause();
-    songs[counter].currentTime = 0;
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
     isPlaying = false;
-    
-    counter--;
-    playSongs();
+    audioPlayer.src = '';
+
+    songCounter--;
+    playSong();
 });
 
 playNextButton.addEventListener('click', () => {
-    songs[counter].pause();
+    audioPlayer.pause();
+    audioPlayer.src = '';
 
-    if (counter === songs.length - 1) {
-        counter = 0;
+    if (songCounter === songs.length -1) {
+        songCounter = 0;
     } else {
-        counter++;
+        songCounter++;
     }
 
-    songs[counter].currentTime = 0;
+    audioPlayer.currentTime = 0;
     isPlaying = false;
 
-    playSongs();
-});
+    playSong();
+})
 
-playButton.addEventListener('click', playSongs);
+playButton.addEventListener('click', playSong);
 
 volume.addEventListener('input', () => {
     const realValue = volume.value / 100;
-    songs[counter].volume = realValue;
+    audioPlayer.volume = realValue;
 
     localStorage.setItem('savedVolume', realValue);
 });
@@ -264,6 +305,67 @@ window.addEventListener('load', () => {
 
     if (savedVolume != null) {
         volume.value = savedVolume * 100;
-        songs[counter].volume = savedVolume;
+        audioPlayer.volume = savedVolume;
     }
 });
+
+const toggleMenu = document.getElementById('toggleMenu');
+const playListsMenu = document.getElementById('playListsMenu');
+
+toggleMenu.addEventListener('click', () => {
+    playListsMenu.classList.toggle('active');
+    toggleMenu.classList.toggle('active');
+})
+
+walkmanJZButton.addEventListener('click', () => {
+    songs = [];
+    nameSong = [];
+
+    songList.innerHTML = '';
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+    audioPlayer.src = '';
+    isPlaying = false;
+    songCounter = 0;
+
+    readPlayList(walkmanJZ);
+    playListsMenu.classList.remove('active');
+    toggleMenu.classList.remove('active');
+});
+
+walkmanNGHTButton.addEventListener('click', () => {
+    songs = [];
+    nameSong = [];
+
+    songList.innerHTML = '';
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+    audioPlayer.src = '';
+    isPlaying = false;
+    songCounter = 0;
+
+
+    readPlayList(walkmanNGHT);
+    playListsMenu.classList.remove('active');
+    toggleMenu.classList.remove('active');
+});
+
+audioPlayer.addEventListener('ended', () => {
+    if (songCounter === songs.length -1) {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        audioPlayer.src = '';
+        isPlaying = false;
+        songCounter = 0;
+        return;
+    }
+
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+    audioPlayer.src = '';
+    isPlaying = false;
+    songCounter++;
+    playSong();
+});
+
+alert('Улыбнись, Солнышко!');

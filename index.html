@@ -4,17 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Momentum</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/owfont-regular.css">
 </head>
 <body>
     <div class="root" id="root">
+
+        <div class="playListsMenu" id="playListsMenu">
+            
+            <ul class="playListsList">
+                <li class="playList" id="walkmanJZ">
+                    <div class="playListImage">
+                        <img src="./assets/jpeg/walkmanJZ.jpeg" alt="Walkman JZ">
+                    </div>
+                    <span class="playListName">Walkman JZ</span>
+                </li>
+                
+                <li class="playList" id="walkmanNGHT">
+                    <div class="playListImage">
+                        <img src="./assets/jpeg/walkmanNGHT.jpeg" alt="Walkman NGHT">
+                    </div>
+                    <span class="playListName">Walkman NGHT</span>
+                </li>
+            </ul>
+
+        </div>
 
         <header class="header">
 
             <div class="player">
 
                 <div class="inputValueLineAndPlayerButtons">
+                    <div class="toggleMenu" id="toggleMenu">
+                        <div class="menu_line_one"></div>
+                        <div class="menu_line_two"></div>
+                        <div class="menu_line_three"></div>
+                    </div>
+
                     <div class="buttonsContainer">
                     
                         <button class="playButton play-prev" id="play-prev"></button>
@@ -22,23 +48,18 @@
                         <button class="playButton play-next" id="play-next"></button>
 
                     </div>
+
+                    <audio id="audioPlayer" src=""></audio>
                     
                     <div class="inputVolume">
                         <input type="range" min="0" max="100" value="50" id="volume" class="volume">
                     </div>
+
                 </div>
 
                 <div class="songsList">
-                    <ul>
-                        <li class="song">
-                            
-                            
-                        </li>
+                    <ul class="songs" id="songs">
 
-                        <li class="song">
-                            
-                            
-                        </li>
                     </ul>
                 </div>
 
