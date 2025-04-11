@@ -232,7 +232,37 @@ function createSongsList() {
 
 let isPlaying = false;
 
+// function playSong() {
+//     document.querySelectorAll('.song').forEach(song => {
+//         song.classList.remove('active-song');
+//     });
+
+//     if (isPlaying) {
+//         audioPlayer.pause();
+//         playButton.classList.remove('active');
+//     } else {
+//         if (audioPlayer.currentTime > 0) {
+//             audioPlayer.play();
+//             playButton.classList.add('active');
+//             document.querySelectorAll('.song')[songCounter].classList.add('active-song');
+//             isPlaying = !isPlaying;
+//             return;
+//         }
+
+//         audioPlayer.src = songs[songCounter];
+//         audioPlayer.play();
+
+//         playButton.classList.add('active');
+//         document.querySelectorAll('.song')[songCounter].classList.add('active-song');
+//     }
+
+//     isPlaying = !isPlaying;
+// }
+
 function playSong() {
+
+    playButton.disabled = true;
+
     document.querySelectorAll('.song').forEach(song => {
         song.classList.remove('active-song');
     });
@@ -242,21 +272,32 @@ function playSong() {
         playButton.classList.remove('active');
     } else {
         if (audioPlayer.currentTime > 0) {
-            audioPlayer.play();
+            audioPlayer.play().catch(error => {
+                console.error("Ошибка при воспроизведении:", error);
+            });
             playButton.classList.add('active');
             document.querySelectorAll('.song')[songCounter].classList.add('active-song');
             isPlaying = !isPlaying;
+            audioPlayer.onended = () => {
+                playButton.disabled = false;
+            };
             return;
         }
 
         audioPlayer.src = songs[songCounter];
-        audioPlayer.play();
+        audioPlayer.play().catch(error => {
+            console.error("Ошибка при воспроизведении:", error);
+        });
 
         playButton.classList.add('active');
         document.querySelectorAll('.song')[songCounter].classList.add('active-song');
     }
 
     isPlaying = !isPlaying;
+
+    audioPlayer.onended = () => {
+        playButton.disabled = false;
+    };
 }
 
 prevButton.addEventListener('click', () => {
