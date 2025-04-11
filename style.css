@@ -71,23 +71,23 @@ body {
 }
 
 .play-prev {
-    background-image: url(/Momentum/assets/svg/play-prev.svg);
+    background-image: url(./svg/play-prev.svg);
 }
 
 .play {
     width: 40px;
     height: 40px;
 
-    background-image: url(/Momentum/assets/svg/play.svg);
+    background-image: url(./svg/play.svg);
 }
 
 .play.active {
-    background-image: url(/Momentum/assets/svg/pause.svg);
+    background-image: url(./svg/pause.svg);
 }
 
 
 .play-next {
-    background-image: url(/Momentum/assets/svg/play-next.svg);
+    background-image: url(./svg/play-next.svg);
 }
 
 .song {
@@ -212,13 +212,13 @@ body {
 .leftSliderButton {
     left: 30px;
 
-    background-image: url(/Momentum/assets/svg/slider-prev.svg);
+    background-image: url(./svg/slider-prev.svg);
 }
 
 .rightSliderButton {
     right: 30px;
 
-    background-image: url(/Momentum/assets/svg/slider-next.svg);
+    background-image: url(./svg/slider-next.svg);
 }
 
 .watch {
@@ -444,12 +444,15 @@ body {
     
     transition: 0.4s ease;
 }
+
 .menu_line_one {
     top: 10px;
 }
+
 .menu_line_two {
     top: 23px;
 }
+
 .menu_line_three {
     top: 36px;
 }
