@@ -188,9 +188,9 @@ changeQuoteButton.addEventListener('click', getQuote);
 /// Player
 
 const walkmanJZButton = document.getElementById('walkmanJZ');
-const walkmanJZ = '/Momentum/songs/walkmanJZ.json';
+const walkmanJZ = '/momentum/songs/walkmanJZ.json';
 const walkmanNGHTButton = document.getElementById('walkmanNGHT');
-const walkmanNGHT = '/Momentum/songs/walkmanNGHT.json'
+const walkmanNGHT = '/momentum/songs/walkmanNGHT.json'
 
 let nameSong = [];
 let songs = [];
