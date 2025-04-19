@@ -297,9 +297,9 @@ prevButton.addEventListener('click', prevButtonFunction);
 playNextButton.addEventListener('click', playNextButtonFunction);
 playButton.addEventListener('click', playButtonFunction);
 
-prevButton.removeEventListener('click', prevButtonFunction);
-playNextButton.removeEventListener('click', playNextButtonFunction);
-playButton.removeEventListener('click', playButtonFunction);
+// prevButton.removeEventListener('click', prevButtonFunction);
+// playNextButton.removeEventListener('click', playNextButtonFunction);
+// playButton.removeEventListener('click', playButtonFunction);
 
 volume.addEventListener('input', () => {
     const realValue = volume.value / 100;
