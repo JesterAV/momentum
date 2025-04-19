@@ -259,7 +259,7 @@ function playSong() {
     isPlaying = !isPlaying;
 }
 
-prevButton.addEventListener('click', () => {
+const prevButtonFunction = () => {
     if (songCounter === 0) {
         return;
     }
@@ -271,11 +271,9 @@ prevButton.addEventListener('click', () => {
 
     songCounter--;
     playSong();
-});
+};
 
-prevButton.removeEventListener('click');
-
-playNextButton.addEventListener('click', () => {
+const playNextButtonFunction = () => {
     audioPlayer.pause();
     audioPlayer.src = '';
 
@@ -289,13 +287,19 @@ playNextButton.addEventListener('click', () => {
     isPlaying = false;
 
     playSong();
-});
+};
 
-playNextButton.removeEventListener('click');
+const playButtonFunction = () => {
+    playSong();
+};
 
-playButton.addEventListener('click', playSong);
+prevButton.addEventListener('click', prevButtonFunction);
+playNextButton.addEventListener('click', playNextButtonFunction);
+playButton.addEventListener('click', playButtonFunction);
 
-playButton.removeEventListener('click');
+prevButton.removeEventListener('click', prevButtonFunction);
+playNextButton.removeEventListener('click', playNextButtonFunction);
+playButton.removeEventListener('click', playButtonFunction);
 
 volume.addEventListener('input', () => {
     const realValue = volume.value / 100;
@@ -321,7 +325,7 @@ const playListsMenu = document.getElementById('playListsMenu');
 toggleMenu.addEventListener('click', () => {
     playListsMenu.classList.toggle('active');
     toggleMenu.classList.toggle('active');
-})
+});
 
 walkmanJZButton.addEventListener('click', () => {
     songs = [];
