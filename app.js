@@ -272,8 +272,6 @@ const prevButtonFunction = () => {
 
     songCounter--;
     playSong();
-
-    console.log('Кнопка назад сработала');
 };
 
 const playNextButtonFunction = () => {
@@ -290,22 +288,15 @@ const playNextButtonFunction = () => {
     isPlaying = false;
 
     playSong();
-
-    console.log('Кнопка некст сработала');
 };
 
 const playButtonFunction = () => {
     playSong();
-    console.log('Плей сработал');
 };
 
 prevButton.addEventListener('click', prevButtonFunction);
 playNextButton.addEventListener('click', playNextButtonFunction);
 playButton.addEventListener('click', playButtonFunction);
-
-// prevButton.removeEventListener('click', prevButtonFunction);
-// playNextButton.removeEventListener('click', playNextButtonFunction);
-// playButton.removeEventListener('click', playButtonFunction);
 
 volume.addEventListener('input', () => {
     const realValue = volume.value / 100;
