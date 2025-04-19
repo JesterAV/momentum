@@ -205,6 +205,7 @@ function readPlayList(playlist) {
     .then(data => {
         data.forEach(item => {
             songs.push(item.song);
+            console.log(songs);
             nameSong.push(item.name);
         });
 
@@ -271,6 +272,8 @@ const prevButtonFunction = () => {
 
     songCounter--;
     playSong();
+
+    console.log('Кнопка назад сработала');
 };
 
 const playNextButtonFunction = () => {
@@ -287,10 +290,13 @@ const playNextButtonFunction = () => {
     isPlaying = false;
 
     playSong();
+
+    console.log('Кнопка некст сработала');
 };
 
 const playButtonFunction = () => {
     playSong();
+    console.log('Плей сработал');
 };
 
 prevButton.addEventListener('click', prevButtonFunction);
